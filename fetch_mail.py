@@ -54,7 +54,7 @@ def get_email_data():
             if isinstance(response_part, tuple):
                 mail = mailparser.parse_from_bytes(response_part[1])
                 messagedata["message_body"] = mail.text_plain[0][0:mail.text_plain[0].index("<")]
-                recipcount = 0
+                recipcount = 1
                 for i in mail.from_[0]:
                     if "daniel" in i.lower():
                         messagedata["message_from"] = "Daniel Campbell"
@@ -66,12 +66,12 @@ def get_email_data():
                     if "pk3" in i.lower():
                         continue
                     if "@" in i.lower():
-                        messagedata["message_recipient"].append({f'{recipcount}':
+                        messagedata["message_recipient"].append(
                                                                      {"email": i.lower(),
                                                                       "name": i[0:i.index("@")],
                                                                       "org": i[i.index("@") + 1:i.index(".")]
                                                                       }
-                                                                 })
+                        )
                         recipcount += 1
                 messagedata["message_date"] = mail.date
                 messagedata["message_subject"] = mail.subject
