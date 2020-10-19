@@ -68,12 +68,12 @@ def get_email_data():
                     if "@" in i.lower():
                         messagedata["message_recipient"].append(
                                                                      {"email": i.lower(),
-                                                                      "name": i[0:i.index("@")],
-                                                                      "org": i[i.index("@") + 1:i.index(".")]
+                                                                      "name": i[0:i.index("@")].upper(),
+                                                                      "org": i[i.index("@") + 1:i.index(".")].upper()
                                                                       }
                         )
                         recipcount += 1
-                messagedata["message_date"] = mail.date
+                messagedata["message_date"] = mail.date.strftime("%Y %m %d").replace(" ", "")
                 messagedata["message_subject"] = mail.subject
                 return_data.append(messagedata)
     return return_data
