@@ -83,14 +83,14 @@ def get_email_data():
                 messagedata["message_date"] = mail.date.strftime("%Y %m %d").replace(" ", "")
                 messagedata["message_subject"] = mail.subject
                 return_data.append(messagedata)
-        now = datetime.now()
-        filename = messagedata["message_subject"] + now.strftime("%m/%d/%Y, %H:%M:%S")
-        messagedata["message_filename"] = re.sub('[^A-Za-z0-9]+', ' ', filename).replace(" ", "")
-        f = open('%s/%s.eml' % ("emails", messagedata["message_filename"]), 'wb')
-        f.write(data[0][1])
-        uploadToStorage("emails/" + messagedata["message_filename"] + ".eml", messagedata["message_filename"] + ".eml")
-        f.close()
-        os.remove("emails/" + messagedata["message_filename"] + ".eml")
+        # now = datetime.now()
+        # filename = messagedata["message_subject"] + now.strftime("%m/%d/%Y, %H:%M:%S")
+        # messagedata["message_filename"] = re.sub('[^A-Za-z0-9]+', ' ', filename).replace(" ", "")
+        # f = open('%s/%s.eml' % ("emails", messagedata["message_filename"]), 'wb')
+        # f.write(data[0][1])
+        # uploadToStorage("emails/" + messagedata["message_filename"] + ".eml", messagedata["message_filename"] + ".eml")
+        # f.close()
+        # os.remove("emails/" + messagedata["message_filename"] + ".eml")
     return return_data
 
 def uploadToStorage(filepath, filename):
