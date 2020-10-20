@@ -12,6 +12,7 @@ def process():
     email_data = fetch_mail.get_email_data()
     for i in range(len(email_data)):
         insert_to_db.insert_to_db(email_data[i])
+    return "Hello from Python!"
 
 schedule.every(5).seconds.do(process)
 
