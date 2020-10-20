@@ -10,7 +10,7 @@ import base64
 def get_email_data():
     return_data =[]
     EMAIL = 'pk3agency1@gmail.com'
-    PASSWORD = 'sKLC#9aqMr'
+    PASSWORD = 'admctymaykkiuhxq'
     SERVER = 'imap.gmail.com'
 
     # connect to the server and go to its inbox
