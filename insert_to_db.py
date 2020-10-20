@@ -1,9 +1,8 @@
-import pyodbc
+import pypyodbc
 
 def insert_to_db(data):
       print(data)
-      import pyodbc
-      cnxn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:surveyorstoolkit.database.windows.net,1433;Database=Surveyors_Toolkit;Uid=dannycdannydo;Pwd=Kn1fedge;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
+      cnxn = pypyodbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:surveyorstoolkit.database.windows.net,1433;Database=Surveyors_Toolkit;Uid=dannycdannydo;Pwd=Kn1fedge;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
       cursor = cnxn.cursor()
       val = ''
       columns = ''
