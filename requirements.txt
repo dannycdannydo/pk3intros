@@ -1,0 +1,10 @@
+imaplib
+re
+mail-parser
+datetime
+os
+uuid
+azure-storage-blob
+schedule
+time
+import pyodbc

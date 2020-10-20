@@ -8,29 +8,29 @@ def insert_to_db(data):
       val = ''
       columns = ''
       if len(data["message_recipient"]) > 2:
-            val = (data["message_body"], data["message_from"],  data["message_subject"],
+            val = (data["message_body"], data["message_from"],  data["message_subject"], data["message_filename"],
             data["message_recipient"][0]['email'], data["message_recipient"][1]['email'], data["message_recipient"][2]['email'],
             data["message_recipient"][0]['name'], data["message_recipient"][1]['name'], data["message_recipient"][2]['name'],
             data["message_recipient"][0]['org'], data["message_recipient"][1]['org'], data["message_recipient"][2]['org'],
             data["message_date"])
-            columns = '(message_body, message_from, message_subject, message_recipient_email_1, message_recipient_email_2, message_recipient_email_3 message_recipient_name_1, message_recipient_name_2, message_recipient_name_3, message_recipient_org_1, message_recipient_org_2, message_recipient_org_3, message_date)'
+            columns = '(message_body, message_from, message_subject, message_filename, message_recipient_email_1, message_recipient_email_2, message_recipient_email_3 message_recipient_name_1, message_recipient_name_2, message_recipient_name_3, message_recipient_org_1, message_recipient_org_2, message_recipient_org_3, message_date)'
       elif len(data["message_recipient"]) == 2:
-            val = (data["message_body"], data["message_from"],  data["message_subject"],
+            val = (data["message_body"], data["message_from"],  data["message_subject"], data["message_filename"],
             data["message_recipient"][0]['email'], data["message_recipient"][1]['email'],
             data["message_recipient"][0]['name'], data["message_recipient"][1]['name'],
             data["message_recipient"][0]['org'], data["message_recipient"][1]['org'],
             data["message_date"])
-            columns = '(message_body, message_from, message_subject, message_recipient_email_1, message_recipient_email_2, message_recipient_name_1, message_recipient_name_2, message_recipient_org_1, message_recipient_org_2, message_date)'
+            columns = '(message_body, message_from, message_subject, message_filename, message_recipient_email_1, message_recipient_email_2, message_recipient_name_1, message_recipient_name_2, message_recipient_org_1, message_recipient_org_2, message_date)'
       elif len(data["message_recipient"]) == 1:
-            val = (data["message_body"], data["message_from"],  data["message_subject"],
+            val = (data["message_body"], data["message_from"],  data["message_subject"], data["message_filename"],
             data["message_recipient"][0]['email'],
             data["message_recipient"][0]['name'],
             data["message_recipient"][0]['org'],
             data["message_date"])
-            columns = '(message_body, message_from, message_subject, message_recipient_email_1, message_recipient_name_1, message_recipient_org_1, message_date)'
+            columns = '(message_body, message_from, message_subject, message_filename, message_recipient_email_1, message_recipient_name_1, message_recipient_org_1, message_date)'
       else:
-            val = (data["message_body"], data["message_from"], data["message_subject"], data["message_date"])
-            columns = '(message_body, message_from, message_subject, message_date)'
+            val = (data["message_body"], data["message_from"], data["message_subject"], data["message_filename"], data["message_date"])
+            columns = '(message_body, message_from, message_subject, message_filename, message_date)'
       print("INSERT INTO pk3intros %s VALUES (%s)" % (columns, val))
       cursor.execute("INSERT INTO pk3intros %s VALUES %s" % (columns, val))
       cnxn.commit()
