@@ -23,7 +23,7 @@ def get_email_data():
     # every message inside the inbox
     # it will return with its status and a list of ids
     # change to UNSEEN for working model
-    status, data = email.search(None, 'ALL')
+    status, data = email.search(None, 'UNSEEN')
     # the list returned is a list of bytes separated
     # by white spaces on this format: [b'1 2 3', b'4 5 6']
     # so, to separate it first we create an empty list
