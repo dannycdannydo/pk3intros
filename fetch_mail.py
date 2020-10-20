@@ -86,21 +86,8 @@ def get_email_data():
         now = datetime.now()
         filename = messagedata["message_subject"] + now.strftime("%m/%d/%Y, %H:%M:%S")
         messagedata["message_filename"] = re.sub('[^A-Za-z0-9]+', ' ', filename).replace(" ", "")
-        f = open('%s/%s.eml' % ("emails", messagedata["message_filename"]), 'wb')
-        f.write(data[0][1])
-        uploadToStorage("emails/" + messagedata["message_filename"] + ".eml", messagedata["message_filename"] + ".eml")
-        f.close()
-        os.remove("emails/" + messagedata["message_filename"] + ".eml")
+        blob = BlobClient.from_connection_string(
+            conn_str="DefaultEndpointsProtocol=https;AccountName=trakr;AccountKey=aYmghpgtLyvrbGRQnmG5Hzsdy3mVc9k3lssKMh4IOK3ci1M7VrgLb6/KqLIqvPNl/DlCWmL2B3RRWmlXWZykUg==;EndpointSuffix=core.windows.net",
+            container_name="pk3intros", blob_name=messagedata["message_filename"])
+        blob.upload_blob(data[0][1])
     return return_data
-
-def uploadToStorage(filepath, filename):
-    blobpath = filepath
-    try:
-        blob = BlobClient.from_connection_string(conn_str="DefaultEndpointsProtocol=https;AccountName=trakr;AccountKey=aYmghpgtLyvrbGRQnmG5Hzsdy3mVc9k3lssKMh4IOK3ci1M7VrgLb6/KqLIqvPNl/DlCWmL2B3RRWmlXWZykUg==;EndpointSuffix=core.windows.net", container_name="pk3intros",
-                                                 blob_name=filename)
-        with open(blobpath, "rb") as data:
-            blob.upload_blob(data)
-    except:
-        print("Upload to Blob failed or File Already Exists in Storage")
-        return(["fail",filepath])
-    return()
